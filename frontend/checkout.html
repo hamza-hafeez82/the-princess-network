@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | The Princess Network</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body style="background: #fff;">
+
+    <!-- Minimal Header -->
+    <header class="site-header"
+        style="border-bottom: 1px solid rgba(196, 132, 138, 0.15); background: rgba(253, 246, 240, 0.95); position: sticky; top:0; z-index: 100;">
+        <div
+            style="max-width: 1400px; margin: 0 auto; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="logo" style="text-decoration: none;">
+                <div class="logo-icon">♛</div>
+                <div class="logo-text">
+                    <span class="brand-name">The Princess Network</span>
+                </div>
+            </a>
+            <a href="index.html"
+                style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); text-decoration: none;">←
+                Return to Shop</a>
+        </div>
+    </header>
+
+    <main
+        style="max-width: 1200px; margin: 60px auto 120px; padding: 0 40px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px;"
+        class="checkout-grid">
+
+        <!-- Left Column: Forms -->
+        <div class="checkout-forms">
+            <h1 style="font-family: 'Cinzel', serif; font-size: 28px; margin-bottom: 40px; color: var(--ink);">Secure
+                Checkout</h1>
+
+            <!-- Contact -->
+            <section style="margin-bottom: 40px;">
+                <h2
+                    style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">
+                    Contact Information</h2>
+                <input type="email" placeholder="Email address" class="c-input">
+                <label
+                    style="display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 13px; color: var(--gray);">
+                    <input type="checkbox"> Email me with news and offers
+                </label>
+            </section>
+
+            <!-- Shipping -->
+            <section style="margin-bottom: 40px;">
+                <h2
+                    style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">
+                    Shipping Address</h2>
+                <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                    <input type="text" placeholder="First name" class="c-input">
+                    <input type="text" placeholder="Last name" class="c-input">
+                </div>
+                <input type="text" placeholder="Address" class="c-input" style="margin-bottom: 16px;">
+                <input type="text" placeholder="Apartment, suite, etc. (optional)" class="c-input"
+                    style="margin-bottom: 16px;">
+                <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                    <input type="text" placeholder="City" class="c-input">
+                    <select class="c-input">
+                        <option>State</option>
+                        <option>California</option>
+                        <option>New York</option>
+                    </select>
+                    <input type="text" placeholder="ZIP code" class="c-input">
+                </div>
+            </section>
+
+            <!-- Payment -->
+            <section>
+                <h2
+                    style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">
+                    Payment</h2>
+                <div
+                    style="background: #faf4ee; padding: 24px; border-radius: 16px; border: 1px solid rgba(196, 132, 138, 0.2);">
+                    <input type="text" placeholder="Card number" class="c-input"
+                        style="margin-bottom: 16px; background: #fff;">
+                    <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                        <input type="text" placeholder="Expiration date (MM/YY)" class="c-input"
+                            style="background: #fff;">
+                        <input type="text" placeholder="Security code" class="c-input" style="background: #fff;">
+                    </div>
+                    <input type="text" placeholder="Name on card" class="c-input" style="background: #fff;">
+                </div>
+            </section>
+
+            <button
+                style="margin-top: 40px; width: 100%; padding: 20px; background: var(--dark); color: #fff; border: none; border-radius: 100px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s;"
+                onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='var(--dark)'"
+                onclick="processCheckout()">Complete Order</button>
+        </div>
+
+        <!-- Right Column: Order Summary -->
+        <div class="checkout-summary"
+            style="background: #faf4ee; padding: 40px; border-radius: 24px; border: 1px solid rgba(196, 132, 138, 0.15); height: fit-content; position: sticky; top: 100px;">
+            <h2
+                style="font-family: 'Cinzel', serif; font-size: 20px; margin-bottom: 30px; border-bottom: 1px solid rgba(196, 132, 138, 0.2); padding-bottom: 16px;">
+                Order Summary</h2>
+
+            <div id="checkoutItems" style="margin-bottom: 30px; display: flex; flex-direction: column; gap: 20px;">
+                <!-- Injected via JS -->
+            </div>
+
+            <div style="border-top: 1px solid rgba(196, 132, 138, 0.2); padding-top: 20px; margin-bottom: 20px;">
+                <div
+                    style="display: flex; justify-content: space-between; font-size: 14px; color: var(--gray); margin-bottom: 12px;">
+                    <span>Subtotal</span>
+                    <span id="coSubtotal">$0.00</span>
+                </div>
+                <div
+                    style="display: flex; justify-content: space-between; font-size: 14px; color: var(--gray); margin-bottom: 12px;">
+                    <span>Shipping</span>
+                    <span id="coShipping">Calculated at next step</span>
+                </div>
+            </div>
+
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(196, 132, 138, 0.2); padding-top: 20px;">
+                <span style="font-size: 16px; font-weight: 500;">Total</span>
+                <span id="coTotal"
+                    style="font-size: 24px; font-family: 'Cinzel', serif; color: var(--gold);">$0.00</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script src="scripts/checkout.js"></script>
+</body>
+
+</html>
