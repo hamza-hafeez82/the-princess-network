@@ -42,63 +42,140 @@
             <h1 style="font-family: 'Cinzel', serif; font-size: 28px; margin-bottom: 40px; color: var(--ink);">Secure
                 Checkout</h1>
 
-            <!-- Contact -->
-            <section style="margin-bottom: 40px;">
-                <h2
-                    style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">
-                    Contact Information</h2>
-                <input type="email" placeholder="Email address" class="c-input">
-                <label
-                    style="display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 13px; color: var(--gray);">
-                    <input type="checkbox"> Email me with news and offers
-                </label>
-            </section>
+            <!-- Humble Account Prompt (Dynamic) -->
+            <div id="authPrompt" style="margin-bottom: 40px;"></div>
 
-            <!-- Shipping -->
-            <section style="margin-bottom: 40px;">
-                <h2
-                    style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">
-                    Shipping Address</h2>
-                <div style="display: flex; gap: 16px; margin-bottom: 16px;">
-                    <input type="text" placeholder="First name" class="c-input">
-                    <input type="text" placeholder="Last name" class="c-input">
-                </div>
-                <input type="text" placeholder="Address" class="c-input" style="margin-bottom: 16px;">
-                <input type="text" placeholder="Apartment, suite, etc. (optional)" class="c-input"
-                    style="margin-bottom: 16px;">
-                <div style="display: flex; gap: 16px; margin-bottom: 16px;">
-                    <input type="text" placeholder="City" class="c-input">
-                    <select class="c-input">
-                        <option>State</option>
-                        <option>California</option>
-                        <option>New York</option>
-                    </select>
-                    <input type="text" placeholder="ZIP code" class="c-input">
-                </div>
-            </section>
+            <form id="checkoutForm">
+                <!-- Contact -->
+                <section style="margin-bottom: 40px;" id="contactSection">
+                    <h2
+                        style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">
+                        Contact Information</h2>
+                    <input type="email" id="email" placeholder="Email address" class="c-input" required>
+                    <label
+                        style="display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 13px; color: var(--gray);">
+                        <input type="checkbox"> Email me with news and offers
+                    </label>
+                </section>
 
-            <!-- Payment -->
-            <section>
-                <h2
-                    style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">
-                    Payment</h2>
-                <div
-                    style="background: #faf4ee; padding: 24px; border-radius: 16px; border: 1px solid rgba(196, 132, 138, 0.2);">
-                    <input type="text" placeholder="Card number" class="c-input"
-                        style="margin-bottom: 16px; background: #fff;">
+                <!-- Shipping -->
+                <section style="margin-bottom: 40px;" id="shippingSection">
+                    <h2
+                        style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">
+                        Shipping Address</h2>
                     <div style="display: flex; gap: 16px; margin-bottom: 16px;">
-                        <input type="text" placeholder="Expiration date (MM/YY)" class="c-input"
-                            style="background: #fff;">
-                        <input type="text" placeholder="Security code" class="c-input" style="background: #fff;">
+                        <input type="text" id="firstName" placeholder="First name" class="c-input" required>
+                        <input type="text" id="lastName" placeholder="Last name" class="c-input" required>
                     </div>
-                    <input type="text" placeholder="Name on card" class="c-input" style="background: #fff;">
-                </div>
-            </section>
+                    <input type="text" id="address" placeholder="Address" class="c-input" style="margin-bottom: 16px;"
+                        required>
+                    <input type="text" id="apartment" placeholder="Apartment, suite, etc. (optional)" class="c-input"
+                        style="margin-bottom: 16px;">
+                    <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                        <input type="text" id="city" placeholder="City" class="c-input" required>
+                        <select id="state" class="c-input" required>
+                            <option value="">State</option>
+                            <option>California</option>
+                            <option>New York</option>
+                            <option>Texas</option>
+                            <option>Florida</option>
+                        </select>
+                        <input type="text" id="zip" placeholder="ZIP code" class="c-input" required>
+                    </div>
+                    <input type="text" id="country" placeholder="Country" class="c-input" value="United States"
+                        required>
+                </section>
 
-            <button
-                style="margin-top: 40px; width: 100%; padding: 20px; background: var(--dark); color: #fff; border: none; border-radius: 100px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s;"
-                onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='var(--dark)'"
-                onclick="processCheckout()">Complete Order</button>
+                <!-- Payment Options -->
+                <section id="paymentSection">
+                    <h2
+                        style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">
+                        Payment Method</h2>
+
+                    <div class="payment-options"
+                        style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;">
+                        <label class="payment-option-card"
+                            style="display: flex; align-items: center; gap: 15px; padding: 20px; border: 1px solid rgba(196, 132, 138, 0.2); border-radius: 16px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="paymentMethod" value="stripe" checked
+                                onclick="updatePaymentUI('stripe')">
+                            <span style="font-size: 14px; font-weight: 500;">Credit Card (Stripe)</span>
+                            <div style="margin-left: auto; display: flex; gap: 8px; opacity: 0.6;">
+                                <span>💳</span>
+                            </div>
+                        </label>
+
+                        <label class="payment-option-card"
+                            style="display: flex; align-items: center; gap: 15px; padding: 20px; border: 1px solid rgba(196, 132, 138, 0.2); border-radius: 16px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="paymentMethod" value="paypal" onclick="updatePaymentUI('paypal')">
+                            <span style="font-size: 14px; font-weight: 500;">PayPal</span>
+                        </label>
+
+                        <label class="payment-option-card"
+                            style="display: flex; align-items: center; gap: 15px; padding: 20px; border: 1px solid rgba(196, 132, 138, 0.2); border-radius: 16px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="paymentMethod" value="bank" onclick="updatePaymentUI('bank')">
+                            <span style="font-size: 14px; font-weight: 500;">Bank Transfer</span>
+                        </label>
+                    </div>
+
+                    <!-- Payment Slider (Swipe Experience) -->
+                    <div class="payment-slider-container"
+                        style="overflow: hidden; border-radius: 20px; border: 1px solid rgba(196, 132, 138, 0.2);">
+                        <div id="paymentTrack"
+                            style="display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); width: 300%;">
+
+                            <!-- Pane 0: Stripe -->
+                            <div class="payment-pane"
+                                style="width: 33.333%; flex-shrink: 0; padding: 30px; background: #faf4ee; box-sizing: border-box;">
+                                <div id="stripeDetails" style="animation: fadeIn 0.4s ease-out;">
+                                    <input type="text" placeholder="Card number" class="c-input"
+                                        style="margin-bottom: 16px; background: #fff;">
+                                    <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                                        <input type="text" placeholder="Expiration date (MM/YY)" class="c-input"
+                                            style="background: #fff;">
+                                        <input type="text" placeholder="Security code" class="c-input"
+                                            style="background: #fff;">
+                                    </div>
+                                    <input type="text" placeholder="Name on card" class="c-input"
+                                        style="background: #fff;">
+                                </div>
+                            </div>
+
+                            <!-- Pane 1: PayPal -->
+                            <div class="payment-pane"
+                                style="width: 33.333%; flex-shrink: 0; padding: 30px; background: #faf4ee; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">🅿️</div>
+                                <p style="font-size: 14px; color: var(--gray); margin-bottom: 10px;">Fast and secure
+                                    checkout with PayPal.</p>
+                                <p
+                                    style="font-size: 12px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px;">
+                                    Redirecting on completion</p>
+                            </div>
+
+                            <!-- Pane 2: Bank -->
+                            <div class="payment-pane"
+                                style="width: 33.333%; flex-shrink: 0; padding: 30px; background: #faf4ee; box-sizing: border-box;">
+                                <p style="font-size: 14px; color: var(--ink); font-weight: 500; margin-bottom: 15px;">
+                                    Royal Bank Transfer Details:</p>
+                                <div
+                                    style="font-size: 13px; color: var(--gray); line-height: 1.8; background: #fff; padding: 20px; border-radius: 12px; border: 1px solid rgba(196, 132, 138, 0.1);">
+                                    <strong>Bank:</strong> Palace International Bank<br>
+                                    <strong>Account Name:</strong> The Princess Network LLC<br>
+                                    <strong>Account No:</strong> 0098 7765 4432 1100<br>
+                                    <strong>Swift/BIC:</strong> ROYALBBXXX
+                                </div>
+                                <p style="font-size: 11px; color: var(--gold); margin-top: 15px; font-style: italic;">*
+                                    Orders processed upon clearance</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <button type="submit" id="submitOrderBtn"
+                    style="margin-top: 40px; width: 100%; padding: 22px; background: var(--dark); color: #fff; border: none; border-radius: 100px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                    Complete Order ♛
+                </button>
+            </form>
         </div>
 
         <!-- Right Column: Order Summary -->
@@ -137,7 +214,7 @@
     <!-- TOAST -->
     <div class="toast" id="toast"></div>
 
-    <script src="scripts/checkout.js"></script>
+    <script type="module" src="scripts/checkout.js"></script>
 </body>
 
 </html>

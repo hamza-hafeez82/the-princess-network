@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History | The Princess Network</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Cinzel:wght@400;700&family=Jost:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body style="background: #fffaf6; padding: 80px 20px;">
+    <div
+        style="max-width: 800px; margin: 0 auto; background: white; padding: 60px; border-radius: 32px; box-shadow: 0 40px 100px rgba(196, 132, 138, 0.1); text-align: center;">
+        <h1 style="font-family: 'Cinzel', serif; font-size: 32px; margin-bottom: 20px;">Your Royal Orders</h1>
+        <p style="color: var(--gray); margin-bottom: 40px;">Review your history of crown acquisitions and palace
+            treasures.</p>
+        <div id="orderList" style="text-align: left;">
+            <p style="text-align: center; color: var(--gray);">Gathering your order history from the palace scrolls...
+            </p>
+        </div>
+        <a href="index.html"
+            style="display: inline-block; margin-top: 40px; color: var(--gold); text-decoration: none; font-weight: 500;">←
+            Back to Gallery</a>
+    </div>
+
+    <script type="module">
+        import { supabase } from './scripts/auth.js';
+        const API_URL = 'http://localhost:3000';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                window.location.href = 'index.html?action=signin';
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_URL}/api/orders?userId=${user.id}`);
+                const orders = await res.json();
+                const list = document.getElementById('orderList');
+
+                if (!orders || orders.length === 0) {
+                    list.innerHTML = '<p style="text-align: center; color: var(--gray); padding: 40px;">No royal orders found in the palace records yet.</p>';
+                } else {
+                    list.innerHTML = orders.map(o => `
+                        <div style="padding: 30px; border: 1px solid rgba(178, 147, 93, 0.1); border-radius: 20px; margin-bottom: 20px; transition: all 0.3s ease; background: #fffaf8; position: relative; overflow: hidden;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                                <div>
+                                    <div style="font-family: 'Cinzel', serif; font-weight: 700; color: var(--gold); font-size: 16px;">Order #${o.id.slice(0, 8).toUpperCase()}</div>
+                                    <div style="font-size: 12px; color: var(--gray); margin-top: 4px;">Placed on ${new Date(o.created_at).toLocaleDateString()}</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); margin-bottom: 4px;">Current Estate</div>
+                                    <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--ink); letter-spacing: 1px; padding: 4px 12px; border: 1px solid var(--ink); border-radius: 20px; display: inline-block;">${o.status}</div>
+                                </div>
+                            </div>
+
+                            <div style="font-size: 14px; line-height: 1.6; color: var(--gray); margin-bottom: 15px;">
+                                ${o.items.map(item => `
+                                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(178,147,93,0.1); padding: 5px 0;">
+                                        <span>${item.name} x${item.qty}</span>
+                                        <span style="color: var(--ink); font-weight: 500;">$${(item.price * item.qty).toFixed(2)}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid rgba(178,147,93,0.2); font-weight: 700; color: var(--ink); font-size: 18px;">
+                                <span style="font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 1px;">Royal Total</span>
+                                <span>$${o.total_amount.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (err) {
+                console.error('Failed to load orders:', err);
+                document.getElementById('orderList').innerHTML = '<p style="text-align: center; color: var(--gray);">The palace scrolls are momentarily unreachable. Please try again soon.</p>';
+            }
+        });
+    </script>
+</body>
+
+</html>

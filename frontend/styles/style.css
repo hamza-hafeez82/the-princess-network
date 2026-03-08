@@ -1882,3 +1882,307 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ACCOUNT DROPDOWN */
+.account-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.account-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  left: auto !important;
+  /* Slight offset to look more natural but stay on screen */
+  width: 240px;
+  background: white !important;
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(196, 132, 138, 0.15);
+  padding: 12px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.account-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .account-dropdown {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    border-radius: 30px 30px 0 0;
+    transform: translateY(100%);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+    opacity: 1 !important;
+    visibility: hidden;
+    z-index: 9999;
+    padding-bottom: 30px;
+    pointer-events: none;
+  }
+
+  .account-dropdown.open {
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.account-dropdown a,
+.account-dropdown button {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 20px;
+  color: var(--ink) !important;
+  text-decoration: none;
+  font-size: 14px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-align: left;
+  font-family: inherit;
+}
+
+.account-dropdown a:hover,
+.account-dropdown button:hover {
+  background: rgba(196, 132, 138, 0.08);
+  color: var(--gold) !important;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+  margin: 8px 0;
+}
+
+.dropdown-header {
+  padding: 10px 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+/* CHECKOUT ENHANCEMENTS */
+.c-input {
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(196, 132, 138, 0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-family: 'Jost', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+.c-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(178, 147, 93, 0.08);
+  background: #fff;
+}
+
+.payment-option-card:hover {
+  border-color: var(--gold) !important;
+  background: #fffaf6 !important;
+}
+
+.payment-option-card input[type="radio"] {
+  accent-color: var(--gold);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure site-header in checkout looks consistent */
+.site-header .brand-name {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ROYAL FEEDBACK UI */
+.royal-feedback-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 17, 17, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.royal-feedback-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.royal-feedback-card {
+  background: var(--glass);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid var(--glass-border);
+  padding: 60px 40px;
+  border-radius: 40px;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.2);
+  transform: scale(0.9) translateY(20px);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.royal-feedback-overlay.show .royal-feedback-card {
+  transform: scale(1) translateY(0);
+}
+
+.royal-feedback-card .royal-icon {
+  font-size: 48px;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: block;
+}
+
+.royal-feedback-card h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  color: var(--ink);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.royal-feedback-card p {
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+.royal-btn-primary {
+  background: var(--ink);
+  color: white;
+  padding: 16px 40px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.royal-btn-primary:hover {
+  background: var(--gold);
+  transform: scale(1.02);
+}
+
+/* ROYAL LOADING UI */
+.royal-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 254, 252, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.royal-loading-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.royal-spinner {
+  width: 64px;
+  height: 64px;
+  border: 3px solid rgba(196, 132, 138, 0.1);
+  border-top-color: #c4848a;
+  /* Using rose color */
+  border-radius: 50%;
+  animation: royal-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  margin-bottom: 25px;
+}
+
+.royal-loading-text {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 500;
+  animation: royal-pulse 2s ease-in-out infinite;
+}
+
+@keyframes royal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes royal-pulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -38,13 +38,19 @@
           </svg></div>
       </a>
       <div class="mobile-right">
-        <a href="#" class="icon-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="8" r="5" stroke="currentColor" stroke-width="2" />
-            <path
-              d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.92143 16.9217 4 17.9391 4 19V21"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg></a>
+        <div class="account-wrapper">
+          <div class="icon-pill" onclick="toggleUserMenu(event)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="8" r="5" stroke="currentColor" stroke-width="2" />
+              <path
+                d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.92143 16.9217 4 17.9391 4 19V21"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="dropdown-menu account-dropdown user-dropdown-menu">
+            <!-- Populated by script.js -->
+          </div>
+        </div>
         <button class="icon-pill" onclick="toggleCart()" style="border:none">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="9" cy="21" r="1" stroke="currentColor" stroke-width="2" />
@@ -153,13 +159,19 @@
             d="M20.84 4.61A5.5 5.5 0 0 0 16.5 3C13.67 3 12 5.57 12 5.57S10.33 3 7.5 3A5.5 5.5 0 0 0 3 7.5c0 1.66.5 3.2 1.35 4.46L12 21l7.65-9.04A5.5 5.5 0 0 0 21 7.5a5.5 5.5 0 0 0-.16-1.89Z"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg></a>
-      <a href="#" class="icon-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="8" r="5" stroke="currentColor" stroke-width="2" />
-          <path
-            d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg></a>
+      <div class="account-wrapper">
+        <div id="userAccount" class="icon-pill" onclick="toggleUserMenu(event)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="5" stroke="currentColor" stroke-width="2" />
+            <path
+              d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div id="userMenu" class="dropdown-menu account-dropdown user-dropdown-menu">
+          <!-- Populated by script.js -->
+        </div>
+      </div>
       <button class="icon-pill" onclick="toggleCart()" style="border:none">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="9" cy="21" r="1" stroke="currentColor" stroke-width="2" />
@@ -196,7 +208,8 @@
       <!-- Slide 1 -->
       <div class="hero-slide active">
         <div class="slide-content">
-          <span class="eyebrow" style="color:rgba(255,255,255,0.8); letter-spacing:4px;">♛ The Spring Collection</span>
+          <span class="eyebrow" style="color:rgba(255,255,255,0.8); letter-spacing:4px;">♛ The Spring
+            Collection</span>
           <h1 class="header-reveal">THE ROYAL<br><em>Tiara Gallery</em></h1>
           <p class="fadeUp">Experience the timeless elegance of our handcrafted crowns, designed for the modern
             princess.</p>
@@ -213,7 +226,8 @@
       <!-- Slide 2 -->
       <div class="hero-slide">
         <div class="slide-content">
-          <span class="eyebrow" style="color:rgba(255,255,255,0.8); letter-spacing:4px;">♛ Artisan Craftsmanship</span>
+          <span class="eyebrow" style="color:rgba(255,255,255,0.8); letter-spacing:4px;">♛ Artisan
+            Craftsmanship</span>
           <h1 class="header-reveal">EXQUISITE<br><em>Jewelry Sets</em></h1>
           <p class="fadeUp">Discover matching necklaces and earrings that capture the essence of royal sophistication.
           </p>
@@ -368,7 +382,8 @@
           <span class="pbadge">Bestseller</span>
           <button class="pwish" onclick="toggleWish(this)">♡</button>
           <img src="assets/bg-hero3.png" alt="Sapphire Crown Ring">
-          <div class="pcard-cta"><button onclick="addToCart('p8', 'Flower Hair Pin', 18, 'assets/bg-hero2.png')">Add to
+          <div class="pcard-cta"><button onclick="addToCart('p8', 'Flower Hair Pin', 18, 'assets/bg-hero2.png')">Add
+              to
               Bag</button></div>
         </div>
         <div class="pcard-body">
@@ -387,7 +402,8 @@
           <span class="pbadge badge-new">New</span>
           <button class="pwish" onclick="toggleWish(this)">♡</button>
           <span class="emoji">💄</span>
-          <div class="pcard-cta"><button onclick="addToCart('p5', 'Royal Magic Wand', 35, 'assets/bg-hero2.png')">Add to
+          <div class="pcard-cta"><button onclick="addToCart('p5', 'Royal Magic Wand', 35, 'assets/bg-hero2.png')">Add
+              to
               Bag</button></div>
         </div>
         <div class="pcard-body">
@@ -406,7 +422,8 @@
           <span class="pbadge badge-sale">Sale</span>
           <button class="pwish" onclick="toggleWish(this)">♡</button>
           <span class="emoji">🌸</span>
-          <div class="pcard-cta"><button onclick="addToCart('Princess Glow Kit','$55.00')">Add to Cart</button></div>
+          <div class="pcard-cta"><button onclick="addToCart('p9', 'Princess Glow Kit', 55, 'assets/bg-hero1.png')">Add
+              to Cart</button></div>
         </div>
         <div class="pcard-body">
           <div class="pcard-cat">Beauty</div>
@@ -424,7 +441,8 @@
           <span class="pbadge badge-new">New</span>
           <button class="pwish" onclick="toggleWish(this)">♡</button>
           <span class="emoji">🎀</span>
-          <div class="pcard-cta"><button onclick="addToCart('Mini Princess Kit','$45.00')">Add to Cart</button></div>
+          <div class="pcard-cta"><button onclick="addToCart('p10', 'Mini Princess Kit', 45, 'assets/bg-hero2.png')">Add
+              to Cart</button></div>
         </div>
         <div class="pcard-body">
           <div class="pcard-cat">Little Princesses</div>
@@ -441,7 +459,8 @@
         <div class="pcard-img bg-mauve">
           <button class="pwish" onclick="toggleWish(this)">♡</button>
           <span class="emoji">🦄</span>
-          <div class="pcard-cta"><button onclick="addToCart('Little Crown Set','$32.00')">Add to Cart</button></div>
+          <div class="pcard-cta"><button onclick="addToCart('p11', 'Little Crown Set', 32, 'assets/bg-hero3.png')">Add
+              to Cart</button></div>
         </div>
         <div class="pcard-body">
           <div class="pcard-cat">Little Princesses</div>
@@ -458,7 +477,8 @@
         <div class="pcard-img bg-sage">
           <button class="pwish" onclick="toggleWish(this)">♡</button>
           <span class="emoji">🐾</span>
-          <div class="pcard-cta"><button onclick="addToCart('Royal Pet Crown','$29.00')">Add to Cart</button></div>
+          <div class="pcard-cta"><button onclick="addToCart('p12', 'Royal Pet Crown', 29, 'assets/bg-hero1.png')">Add to
+              Cart</button></div>
         </div>
         <div class="pcard-body">
           <div class="pcard-cat">Royal Pets</div>
@@ -476,7 +496,8 @@
           <span class="pbadge badge-new">New</span>
           <button class="pwish" onclick="toggleWish(this)">♡</button>
           <span class="emoji">🐩</span>
-          <div class="pcard-cta"><button onclick="addToCart('Princess Pet Bow','$18.00')">Add to Cart</button></div>
+          <div class="pcard-cta"><button onclick="addToCart('p13', 'Princess Pet Bow', 18, 'assets/bg-hero2.png')">Add
+              to Cart</button></div>
         </div>
         <div class="pcard-body">
           <div class="pcard-cat">Royal Pets</div>
@@ -542,7 +563,8 @@
             <span class="fbrand-sub">Beverly Hills · Est. 2020</span>
           </div>
         </div>
-        <p class="fdesc">A magical place bringing the Princess feeling to all walks of life. Crowns, tiaras & all things
+        <p class="fdesc">A magical place bringing the Princess feeling to all walks of life. Crowns, tiaras & all
+          things
           princess.</p>
         <div class="fsocials">
           <a href="https://facebook.com/ThePrincessNetworkOfficial" aria-label="Facebook">
@@ -630,7 +652,7 @@
   <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
-  <script src="scripts/script.js"></script>
+  <script type="module" src="scripts/script.js"></script>
 
 </body>
 
