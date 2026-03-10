@@ -82,7 +82,7 @@ window.processCheckout = async function (e) {
         console.log('Sending Payload to Palace Treasury:', payload);
 
         // 3. Submit to Palace Treasury
-        const res = await fetch(`http://localhost:3000/api/orders`, {
+        const res = await fetch(`${window.CONFIG.API_URL}/api/orders`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -355,7 +355,7 @@ window.processCheckout = async function (e) {
         console.log('Sending Payload to Palace Treasury:', payload);
 
         // 3. Submit to Palace Treasury
-        const res = await fetch(`http://localhost:3000/api/orders`, {
+        const res = await fetch(`${window.CONFIG.API_URL}/api/orders`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)

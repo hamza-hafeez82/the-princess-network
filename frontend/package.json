@@ -1,0 +1,8 @@
+{
+    "name": "the-princess-network-frontend",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "echo \"window.CONFIG = { API_URL: '${API_URL}', SUPABASE_URL: '${SUPABASE_URL}', SUPABASE_ANON_KEY: '${SUPABASE_ANON_KEY}' };\" > scripts/config.js",
+        "dev": "echo \"window.CONFIG = { API_URL: 'http://localhost:3000' };\" > scripts/config.js && npx serve ."
+    }
+}

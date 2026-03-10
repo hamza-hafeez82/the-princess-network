@@ -1,6 +1,6 @@
 import { supabase, getUser } from './auth.js';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = window.CONFIG.API_URL;
 let currentUser = null;
 let fullOrdersList = []; // Cache orders for detailed viewing
 

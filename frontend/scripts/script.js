@@ -176,7 +176,7 @@ window.closeMobileMenu = function () {
   if (overlay) overlay.classList.remove('open');
 }
 
-const API_URL = 'http://localhost:3000';
+const API_URL = window.CONFIG.API_URL;
 
 // --- PRODUCT LOADING ---
 async function loadProducts() {
