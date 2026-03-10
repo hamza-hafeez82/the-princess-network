@@ -803,8 +803,19 @@
             document.getElementById('feedbackOverlay').classList.remove('show');
         };
 
+        window.showToast = function (msg) {
+            const t = document.getElementById('toast');
+            if (!t) return;
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        };
+
         initDashboard();
+
     </script>
+    <div class="toast" id="toast"></div>
 </body>
+
 
 </html>
