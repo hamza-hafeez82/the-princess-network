@@ -920,7 +920,7 @@ body::after {
 }
 
 .pcard-img {
-  height: 380px;
+  aspect-ratio: 1 / 1;
   position: relative;
   overflow: hidden;
   background: #faf7f7;

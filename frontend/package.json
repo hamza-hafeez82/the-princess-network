@@ -1,5 +1,5 @@
 {
-    "name": "the-princess-network-frontend",
+    "name": "the-princess-network",
     "version": "1.0.0",
     "scripts": {
         "build": "echo \"window.CONFIG = { API_URL: '${API_URL}', SUPABASE_URL: '${SUPABASE_URL}', SUPABASE_ANON_KEY: '${SUPABASE_ANON_KEY}' };\" > scripts/config.js",
