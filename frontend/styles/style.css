@@ -1885,6 +1885,220 @@ footer {
   transform: translateY(0);
 }
 
+/* Fail-safe for reveal */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Royal Blog Redesign - Editorial & Justified */
+.royal-blog {
+  padding: 120px 10%;
+  background: #fff;
+  position: relative;
+}
+
+.royal-blog::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.2), transparent);
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  margin-top: 80px;
+}
+
+@media (max-width: 1024px) {
+  .blog-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  border: none;
+  transition: none;
+}
+
+.blog-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.blog-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 25px;
+  aspect-ratio: 4/5;
+}
+
+.blog-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.blog-card:hover .blog-img {
+  transform: scale(1.08);
+}
+
+.blog-body {
+  padding: 0;
+  text-align: justify;
+}
+
+.blog-tag {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.blog-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  text-align: left;
+  /* Headlines usually left-aligned */
+  font-weight: 500;
+}
+
+.blog-body p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+  text-justify: inter-word;
+  /* Justified text */
+}
+
+.btn-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 11px;
+  text-decoration: none;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--gold);
+  transition: all 0.3s ease;
+}
+
+.btn-text:hover {
+  letter-spacing: 2px;
+  color: var(--gold);
+  gap: 15px;
+}
+
+/* Newsletter Refinement */
+.newsletter {
+  background: var(--dark);
+  color: #fff;
+  padding: 120px 5%;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter::before {
+  content: '♛';
+  position: absolute;
+  top: -50px;
+  right: -20px;
+  font-size: 300px;
+  opacity: 0.03;
+  color: var(--gold);
+}
+
+.newsletter-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.newsletter h2 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.newsletter p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.newsletter-form {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+}
+
+.newsletter-form input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 15px 25px;
+  flex: 1;
+  font-size: 1rem;
+}
+
+.newsletter-form input:focus {
+  outline: none;
+}
+
+.newsletter-form .btn-submit {
+  background: var(--gold);
+  color: var(--dark);
+  font-weight: 700;
+  padding: 15px 40px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.newsletter-form .btn-submit:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
+
 .d1 {
   transition-delay: .08s
 }

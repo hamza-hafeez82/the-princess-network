@@ -1,3 +1,34 @@
+// 1. FAIL-SAFE CONFIGURATION
+window.CONFIG = window.CONFIG || { API_URL: '' };
+
+// 2. FAIL-SAFE REVEAL LOGIC (Must run first for site visibility)
+const revealOptions = {
+  threshold: 0.05,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, revealOptions);
+
+function refreshObservers() {
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// Initial observation
+refreshObservers();
+
+// Hard fallback: Force show everything after 3 seconds if JS is struggling
+setTimeout(() => {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+}, 3000);
+
+// 3. IMPORTS AND LOGIC
 import { supabase, signIn, signUp, signOut, onAuthChange, uploadAvatar } from './auth.js';
 
 // Scroll header
@@ -5,12 +36,6 @@ window.addEventListener('scroll', () => {
   const hdr = document.getElementById('hdr');
   if (hdr) hdr.classList.toggle('scrolled', window.scrollY > 50);
 });
-
-// Scroll reveal
-const ro = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
 // --- IndexedDB for Avatar Persistence ---
 async function getPendingAvatar(email) {
@@ -212,7 +237,7 @@ async function loadProducts() {
           </div>
         `;
       });
-      document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+      refreshObservers();
     }
   } catch (err) {
     console.error('Royal products could not be gathered:', err);

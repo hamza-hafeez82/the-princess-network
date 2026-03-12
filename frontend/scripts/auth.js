@@ -1,15 +1,34 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-const SUPABASE_URL = window.CONFIG.SUPABASE_URL;
-const SUPABASE_ANON_KEY = window.CONFIG.SUPABASE_ANON_KEY;
+// Safe configuration access
+const config = window.CONFIG || {};
+const SUPABASE_URL = config.SUPABASE_URL || 'https://placeholder.supabase.co';
+const SUPABASE_ANON_KEY = config.SUPABASE_ANON_KEY || 'placeholder';
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-    auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true
-    }
-});
+// Provide a dummy client if config is missing to prevent total crash
+const isConfigValid = !!(config.SUPABASE_URL && config.SUPABASE_ANON_KEY);
+
+export const supabase = isConfigValid
+    ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+        }
+    })
+    : {
+        auth: {
+            onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => { } } } }),
+            getSession: async () => ({ data: { session: null } }),
+            getUser: async () => ({ data: { user: null } }),
+            signOut: async () => ({ error: null })
+        },
+        storage: { from: () => ({ upload: async () => ({ error: new Error('Config missing') }), getPublicUrl: () => ({ data: { publicUrl: '' } }) }) }
+    };
+
+if (!isConfigValid) {
+    console.warn('♛ The Princess Network: Supabase configuration is missing. Auth features will be limited.');
+}
 
 /**
  * Upload an avatar to Supabase Storage
