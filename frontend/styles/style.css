@@ -173,7 +173,7 @@ body::after {
   color: var(--gray);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .logo-text .brand {
     font-size: 14px;
     letter-spacing: 1px;
@@ -916,11 +916,11 @@ body::after {
   background: var(--gold);
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
+/* Responsive adjustments for Hero */
+@media (max-width: 1100px) {
   .hero-slider {
     height: auto;
-    min-height: 800px;
+    min-height: 700px;
   }
 
   .hero-slide {
@@ -929,6 +929,7 @@ body::after {
     opacity: 1;
     visibility: visible;
     display: none;
+    height: auto;
   }
 
   .hero-slide.active {
@@ -936,15 +937,20 @@ body::after {
   }
 
   .slide-content {
-    padding: 60px 20px;
+    padding: 60px 5%;
     text-align: center;
     align-items: center;
+    background: #fff;
   }
 
   .slide-image {
-    height: 400px;
+    height: 450px;
     flex: none;
     width: 100%;
+  }
+
+  .hero-slide h1 {
+    font-size: 3rem;
   }
 
   .slider-nav {
@@ -955,6 +961,12 @@ body::after {
 
   .hero-slide p {
     margin: 0 auto 30px;
+    font-size: 16px;
+  }
+
+  .slide-stats {
+    gap: 20px;
+    justify-content: center;
   }
 }
 
@@ -2139,24 +2151,24 @@ footer {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .newsletter {
-    padding: 80px 5%;
+    padding: 100px 5%;
   }
 
   .newsletter h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 
   .newsletter-form {
     flex-direction: column;
     border-radius: 20px;
-    padding: 20px;
-    gap: 15px;
+    padding: 15px;
+    gap: 12px;
   }
 
   .newsletter-form input {
-    padding: 15px;
+    padding: 12px;
     text-align: center;
   }
 }
@@ -2177,16 +2189,7 @@ footer {
   transition-delay: .32s
 }
 
-@media(max-width:1024px) {
-  .product-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .products-wrap {
-    padding: 0 4vw 80px;
-  }
-
+@media(max-width:1100px) {
   .main-nav {
     display: none;
   }
@@ -2325,7 +2328,8 @@ footer {
   }
 
   .footer-top {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    text-align: center;
   }
 }
 
@@ -2779,16 +2783,31 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .welcome-title {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
   }
 
   .welcome-title em {
-    font-size: 2.8rem;
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-title {
+    font-size: 3rem;
+  }
+
+  .welcome-title em {
+    font-size: 2.2rem;
   }
 
   .video-welcome {
-    height: 75vh;
+    height: 70vh;
+  }
+
+  .royal-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
   }
 }
